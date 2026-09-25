@@ -1,0 +1,237 @@
+const barberRates = {
+  'Classic Cut': 38,
+  'Skin Fade': 45,
+  'Beard Sculpt': 28,
+  'Kids Cut': 24,
+  'Premium Package': 85,
+  'Executive Grooming': 72,
+};
+
+const barberOptions = {
+  'Marcus': 'Marcus - Master Barber / Skin Fades',
+  'Theo': 'Theo - Precision Cuts / Beard Design',
+  'Andre': 'Andre - Classic Styling / Hot Towel',
+  'Levi': 'Levi - Grooming / Kids Cuts',
+};
+
+function setCurrentYear() {
+  document.querySelectorAll('[data-year]').forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+}
+
+function initMobileNav() {
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (!toggle || !links) return;
+
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
+
+  links.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => links.classList.remove('open'));
+  });
+}
+
+function initModal() {
+  const modal = document.getElementById('welcome-modal');
+  if (!modal) return;
+
+  const close = modal.querySelector('.modal-close');
+  const confirmBtn = modal.querySelector('[data-close-modal]');
+
+  setTimeout(() => {
+    modal.classList.add('show');
+  }, 600);
+
+  [close, confirmBtn].forEach((element) => {
+    if (!element) return;
+    element.addEventListener('click', () => modal.classList.remove('show'));
+  });
+}
+
+function formatDate(dateString) {
+  if (!dateString) return 'Not selected';
+  return new Date(dateString + 'T12:00:00').toLocaleDateString('en-GB', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+function formatTime(timeString) {
+  if (!timeString) return 'Not selected';
+  const [hour, minute] = timeString.split(':').map(Number);
+  const date = new Date();
+  date.setHours(hour, minute, 0, 0);
+  return date.toLocaleTimeString('en-GB', { hour: 'numeric', minute: '2-digit' });
+}
+
+function toCalendarDate(date, time) {
+  const [year, month, day] = date.split('-').map(Number);
+  const [hour, minute] = time.split(':').map(Number);
+  const dt = new Date(year, month - 1, day, hour, minute, 0);
+  return dt;
+}
+
+function formatGoogleDate(date) {
+  return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+}
+
+function buildIcs(bookingData) {
+  const start = toCalendarDate(bookingData.date, bookingData.time);
+  const end = new Date(start.getTime() + (bookingData.duration || 45) * 60000);
+
+  const pad = (value) => String(value).padStart(2, '0');
+  const formatIcsDate = (date) => {
+    return `${date.getUTCFullYear()}${pad(date.getUTCMonth() + 1)}${pad(date.getUTCDate())}T${pad(date.getUTCHours())}${pad(date.getUTCMinutes())}${pad(date.getUTCSeconds())}Z`;
+  };
+
+  const description = `Service: ${bookingData.service}\nBarber: ${bookingData.barber}\nCustomer: ${bookingData.name}\nPhone: ${bookingData.phone}\nNotes: ${bookingData.notes || 'None'}`;
+  const uid = `thegentlemanscut-${Date.now()}@local`;
+
+  return [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//The Gentlemans Cut//EN',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${formatIcsDate(new Date())}`,
+    `DTSTART:${formatIcsDate(start)}`,
+    `DTEND:${formatIcsDate(end)}`,
+    `SUMMARY:${bookingData.service} – The Gentlemans Cut`,
+    `DESCRIPTION:${description.replace(/\n/g, '\\n')}`,
+    'LOCATION:12 Mercer Row, London W1B 4DG',
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\n');
+}
+
+function updateBookingSummary(form) {
+  if (!form) return;
+
+  const service = form.querySelector('#service')?.value || 'Classic Cut';
+  const barber = form.querySelector('#barber')?.value || 'Marcus';
+  const date = form.querySelector('#date')?.value || '';
+  const time = form.querySelector('#time')?.value || '';
+  const name = form.querySelector('#name')?.value || 'Guest';
+  const phone = form.querySelector('#phone')?.value || 'N/A';
+
+  const rate = barberRates[service] || 38;
+
+  const summary = document.getElementById('booking-summary');
+  if (!summary) return;
+
+  summary.innerHTML = `
+    <div class="summary-line"><span>Service</span><strong>${service}</strong></div>
+    <div class="summary-line"><span>Barber</span><strong>${barberOptions[barber] || barber}</strong></div>
+    <div class="summary-line"><span>Date</span><strong>${formatDate(date)}</strong></div>
+    <div class="summary-line"><span>Time</span><strong>${formatTime(time)}</strong></div>
+    <div class="summary-line"><span>Customer</span><strong>${name}</strong></div>
+    <div class="summary-line"><span>Phone</span><strong>${phone}</strong></div>
+    <div class="summary-line"><span>Estimated total</span><strong>£${rate}</strong></div>
+  `;
+}
+
+function initBookingForm() {
+  const form = document.getElementById('booking-form');
+  if (!form) return;
+
+  const infos = {
+    service: form.querySelector('#service'),
+    barber: form.querySelector('#barber'),
+    date: form.querySelector('#date'),
+    time: form.querySelector('#time'),
+    name: form.querySelector('#name'),
+    phone: form.querySelector('#phone'),
+    notes: form.querySelector('#notes'),
+  };
+
+  const saved = JSON.parse(localStorage.getItem('gentlemansBooking') || '{}');
+  if (saved) {
+    Object.entries(infos).forEach(([key, element]) => {
+      if (!element || !saved[key]) return;
+      element.value = saved[key];
+    });
+  }
+
+  Object.values(infos).forEach((element) => {
+    if (!element) return;
+    element.addEventListener('input', () => {
+      const payload = {};
+      Object.entries(infos).forEach(([key, input]) => {
+        if (input && input.value) payload[key] = input.value;
+      });
+      localStorage.setItem('gentlemansBooking', JSON.stringify(payload));
+      updateBookingSummary(form);
+    });
+  });
+
+  updateBookingSummary(form);
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const bookingData = {
+      service: infos.service.value,
+      barber: infos.barber.value,
+      date: infos.date.value,
+      time: infos.time.value,
+      name: infos.name.value,
+      phone: infos.phone.value,
+      notes: infos.notes.value,
+      duration: barberRates[infos.service.value] ? 45 : 45,
+    };
+
+    if (!bookingData.date || !bookingData.time || !bookingData.name || !bookingData.phone) {
+      const notice = document.getElementById('booking-notice');
+      if (notice) {
+        notice.textContent = 'Please complete the required booking details before confirming.';
+        notice.classList.add('show');
+      }
+      return;
+    }
+
+    const notice = document.getElementById('booking-notice');
+    if (notice) {
+      notice.textContent = `Your booking for ${bookingData.service} with ${barberOptions[bookingData.barber] || bookingData.barber} on ${formatDate(bookingData.date)} at ${formatTime(bookingData.time)} is ready.`;
+      notice.classList.add('show');
+    }
+
+    const googleLink = document.getElementById('google-calendar-link');
+    const appleLink = document.getElementById('apple-calendar-link');
+
+    const start = toCalendarDate(bookingData.date, bookingData.time);
+    const end = new Date(start.getTime() + 45 * 60000);
+
+    const googleUrl = new URL('https://calendar.google.com/calendar/render');
+    googleUrl.searchParams.set('action', 'TEMPLATE');
+    googleUrl.searchParams.set('text', `${bookingData.service} – The Gentlemans Cut`);
+    googleUrl.searchParams.set('details', `Service: ${bookingData.service}\nBarber: ${barberOptions[bookingData.barber] || bookingData.barber}\nCustomer: ${bookingData.name}\nPhone: ${bookingData.phone}\nNotes: ${bookingData.notes || 'None'}`);
+    googleUrl.searchParams.set('location', '12 Mercer Row, London W1B 4DG');
+    googleUrl.searchParams.set('dates', `${formatGoogleDate(start)}/${formatGoogleDate(end)}`);
+
+    if (googleLink) googleLink.href = googleUrl.toString();
+
+    const icsData = buildIcs(bookingData);
+    if (appleLink) {
+      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+      appleLink.href = URL.createObjectURL(blob);
+      appleLink.download = 'gentlemans-cut-appointment.ics';
+    }
+
+    localStorage.setItem('lastAppointment', JSON.stringify(bookingData));
+    localStorage.setItem('gentlemansBooking', JSON.stringify(bookingData));
+  });
+}
+
+function initPage() {
+  setCurrentYear();
+  initMobileNav();
+  initModal();
+  initBookingForm();
+}
+
+document.addEventListener('DOMContentLoaded', initPage);

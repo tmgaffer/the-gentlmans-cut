@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Book Appointment | The Gentleman's Cut</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+
+<header>
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            THE <span>GENTLEMAN'S</span> CUT
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="services.html">Services</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+            <li>
+                <a href="booking.html">Booking</a>
+            </li>
+
+            <li>
+                <a href="booking.html" class="book-btn">
+                    Book Now
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+
+    <section class="page-hero">
+
+        <div class="page-hero-content">
+
+            <p class="section-label">
+                RESERVE YOUR CHAIR
+            </p>
+
+            <h1>
+                Book an Appointment
+            </h1>
+
+            <p>
+                Choose your service, barber, date and time.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="booking-wrapper">
+
+
+            <form
+                class="booking-form"
+                id="bookingForm"
+            >
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="e.g. 082 123 4567"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="service">
+                            Service
+                        </label>
+
+                        <select
+                            id="service"
+                            name="service"
+                            required
+                        >
+
+                            <option value="">
+                                Select a service
+                            </option>
+
+                            <option value="Classic Haircut">
+                                Classic Haircut - R180
+                            </option>
+
+                            <option value="Skin Fade">
+                                Skin Fade - R220
+                            </option>
+
+                            <option value="Beard Trim">
+                                Beard Trim - R120
+                            </option>
+
+                            <option value="Haircut and Beard">
+                                Haircut & Beard - R280
+                            </option>
+
+                            <option value="Kids Cut">
+                                Kids Cut - R150
+                            </option>
+
+                            <option value="Gentleman Package">
+                                Gentleman Package - R350
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="barber">
+                            Choose Barber
+                        </label>
+
+                        <select
+                            id="barber"
+                            name="barber"
+                            required
+                        >
+
+                            <option value="">
+                                Select a barber
+                            </option>
+
+                            <option value="Marcus Williams">
+                                Marcus Williams
+                            </option>
+
+                            <option value="Daniel Mokoena">
+                                Daniel Mokoena
+                            </option>
+
+                            <option value="James Nkosi">
+                                James Nkosi
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Appointment Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="time">
+                            Appointment Time
+                        </label>
+
+                        <select
+                            id="time"
+                            name="time"
+                            required
+                        >
+
+                            <option value="">
+                                Select a time
+                            </option>
+
+                            <option value="09:00">
+                                09:00
+                            </option>
+
+                            <option value="10:00">
+                                10:00
+                            </option>
+
+                            <option value="11:00">
+                                11:00
+                            </option>
+
+                            <option value="12:00">
+                                12:00
+                            </option>
+
+                            <option value="13:00">
+                                13:00
+                            </option>
+
+                            <option value="14:00">
+                                14:00
+                            </option>
+
+                            <option value="15:00">
+                                15:00
+                            </option>
+
+                            <option value="16:00">
+                                16:00
+                            </option>
+
+                            <option value="17:00">
+                                17:00
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="notes">
+                            Additional Notes
+                        </label>
+
+                        <input
+                            type="text"
+                            id="notes"
+                            name="notes"
+                            placeholder="Optional"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Confirm Appointment
+                </button>
+
+
+            </form>
+
+
+            <!-- SUCCESS -->
+
+            <div
+                class="booking-success"
+                id="bookingSuccess"
+            >
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>
+                    Booking Confirmed
+                </h2>
+
+                <p>
+                    Your appointment has been prepared successfully.
+                </p>
+
+
+                <div class="booking-details">
+
+                    <div>
+                        <strong>Service</strong>
+                        <span id="summaryService"></span>
+                    </div>
+
+                    <div>
+                        <strong>Barber</strong>
+                        <span id="summaryBarber"></span>
+                    </div>
+
+                    <div>
+                        <strong>Date</strong>
+                        <span id="summaryDate"></span>
+                    </div>
+
+                    <div>
+                        <strong>Time</strong>
+                        <span id="summaryTime"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#"
+                        id="googleCalendar"
+                        class="btn"
+                        target="_blank"
+                    >
+                        Google Calendar
+                    </a>
+
+                    <button
+                        id="downloadCalendar"
+                        class="btn-outline"
+                        type="button"
+                    >
+                        Apple Calendar
+                    </button>
+
+                </div>
+
+
+                <br>
+
+                <a
+                    href="index.html"
+                    class="btn-outline"
+                >
+                    Return Home
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-column">
+
+            <h3>
+                The Gentleman's Cut
+            </h3>
+
+            <p>
+                Premium grooming for modern gentlemen.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Navigation
+            </h4>
+
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="booking.html">Booking</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Opening Hours
+            </h4>
+
+            <p>Mon - Fri: 09:00 - 18:00</p>
+            <p>Saturday: 08:00 - 16:00</p>
+            <p>Sunday: Closed</p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>011 123 4567</p>
+            <p>info@gentlemanscut.co.za</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 The Gentleman's Cut
+        </p>
+
+        <a href="terms.html">
+            Terms & Conditions
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

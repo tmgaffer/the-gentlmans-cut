@@ -1,0 +1,1159 @@
+/* =========================================
+   ROOT / GLOBAL
+========================================= */
+
+:root {
+    --black: #0b0b0b;
+    --dark: #111111;
+    --dark-card: #181818;
+    --gold: #c9a227;
+    --gold-light: #e1c45a;
+    --white: #ffffff;
+    --grey: #aaaaaa;
+    --border: #303030;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 35px;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navbar {
+    width: 100%;
+    background: #0b0b0b;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1400px;
+    min-height: 80px;
+
+    margin: 0 auto;
+    padding: 0 35px;
+
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    color: var(--white);
+    text-decoration: none;
+
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+/* Push navigation to the RIGHT */
+
+.nav-links {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+}
+
+.nav-links a {
+    color: var(--white);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: color 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-links a.active {
+    color: var(--gold);
+}
+
+/* Book Now button */
+
+.book-btn {
+    background: var(--gold);
+    color: #0b0b0b !important;
+
+    padding: 12px 22px;
+
+    border-radius: 5px;
+
+    font-weight: 700 !important;
+
+    transition: all 0.25s ease;
+}
+
+.book-btn:hover {
+    background: var(--gold-light);
+    color: #0b0b0b !important;
+}
+
+/* Hamburger */
+
+.menu-toggle {
+    display: none;
+
+    background: transparent;
+    border: 1px solid var(--gold);
+
+    color: var(--white);
+
+    font-size: 24px;
+
+    padding: 5px 10px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height: 85vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.60),
+            rgba(0, 0, 0, 0.70)
+        ),
+        url("../images/Main.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 100px 20px;
+
+    text-align: center;
+}
+
+.hero h1 {
+    color: var(--white);
+
+    font-size: clamp(45px, 7vw, 82px);
+
+    line-height: 1.05;
+
+    margin: 20px 0;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    max-width: 700px;
+
+    margin: 0 auto 30px;
+
+    color: #dddddd;
+
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn {
+    display: inline-block;
+
+    background: var(--gold);
+    color: #111111;
+
+    padding: 13px 25px;
+
+    border-radius: 3px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    display: inline-block;
+
+    border: 1px solid var(--gold);
+    color: var(--white);
+
+    padding: 12px 24px;
+
+    border-radius: 3px;
+
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: var(--gold);
+    color: #111111;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.section {
+    padding: 90px 7%;
+}
+
+.section-title,
+.section-heading {
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: 0 auto 50px;
+}
+
+.section-title h2 {
+    font-size: clamp(32px, 5vw, 50px);
+
+    margin: 10px 0 15px;
+}
+
+.section-title p,
+.section-heading p {
+    color: var(--grey);
+    line-height: 1.7;
+}
+
+.section-label {
+    color: var(--gold);
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.section-action {
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+/* =========================================
+   SERVICES
+========================================= */
+
+.services-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.service-card {
+    background: var(--dark-card);
+
+    border: 1px solid var(--border);
+
+    padding: 35px 30px;
+
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+}
+
+.service-icon {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: var(--grey);
+    margin-bottom: 20px;
+}
+
+.price {
+    color: var(--gold);
+
+    font-size: 23px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.about-preview {
+    background: #101010;
+}
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+.about-image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.about-image img {
+    width: 100%;
+    height: 500px;
+
+    object-fit: cover;
+}
+
+.about-text h2 {
+    font-size: 45px;
+
+    margin: 15px 0 20px;
+}
+
+.about-text p {
+    color: var(--grey);
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   BARBERS
+========================================= */
+
+.barber-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.barber-card {
+    background: var(--dark-card);
+
+    border: 1px solid var(--border);
+
+    overflow: hidden;
+}
+
+.barber-card img {
+    width: 100%;
+    height: 350px;
+
+    object-fit: cover;
+}
+
+.barber-info {
+    padding: 25px;
+}
+
+.barber-info h3 {
+    font-size: 22px;
+}
+
+.barber-role {
+    color: var(--gold);
+
+    margin-top: 5px;
+}
+
+.barber-info p {
+    color: var(--grey);
+
+    margin-top: 12px;
+}
+
+
+/* =========================================
+   PAGE HERO
+========================================= */
+
+.page-hero {
+    min-height: 45vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 80px 7%;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.68),
+            rgba(0, 0, 0, 0.68)
+        ),
+        url("../images/shop.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.page-hero-content {
+    max-width: 800px;
+}
+
+.page-hero h1 {
+    font-size: clamp(42px, 6vw, 75px);
+
+    margin: 15px 0;
+}
+
+.page-hero p {
+    color: #dddddd;
+
+    max-width: 650px;
+
+    margin: auto;
+}
+
+
+/* =========================================
+   BOOKING
+========================================= */
+
+.booking-wrapper {
+    max-width: 900px;
+
+    margin: auto;
+
+    background: var(--dark-card);
+
+    padding: 45px;
+
+    border: 1px solid var(--border);
+}
+
+.booking-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #0d0d0d;
+
+    border: 1px solid #3a3a3a;
+
+    color: var(--white);
+
+    border-radius: 3px;
+
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--gold);
+}
+
+.booking-form button {
+    border: none;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BOOKING SUCCESS
+========================================= */
+
+.booking-success {
+    display: none;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background: #121212;
+
+    border: 1px solid var(--gold);
+}
+
+.booking-success.show {
+    display: block;
+}
+
+.success-icon {
+    font-size: 50px;
+    color: var(--gold);
+}
+
+.booking-success h2 {
+    margin: 15px 0;
+}
+
+.booking-details {
+    max-width: 500px;
+
+    margin: 25px auto;
+
+    text-align: left;
+}
+
+.booking-details div {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #333;
+}
+
+
+/* =========================================
+   BOOKING CTA
+========================================= */
+
+.booking-cta {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.78),
+            rgba(0, 0, 0, 0.85)
+        ),
+        url("../images/hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+
+    margin: 0 auto;
+
+    padding: 80px 20px;
+}
+
+.cta-content h2 {
+    color: var(--white);
+
+    font-size: clamp(32px, 5vw, 52px);
+
+    margin: 15px 0;
+}
+
+.cta-content p {
+    color: var(--grey);
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.contact-card {
+    text-align: center;
+
+    background: var(--dark-card);
+
+    border: 1px solid var(--border);
+
+    padding: 35px;
+}
+
+.contact-card .icon {
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.contact-card h3 {
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    color: var(--grey);
+}
+
+
+/* =========================================
+   LEGAL / TERMS
+========================================= */
+
+.legal-content {
+    max-width: 900px;
+
+    margin: auto;
+}
+
+.legal-content h2 {
+    color: var(--gold);
+
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+.legal-content p {
+    color: #bbbbbb;
+
+    margin-bottom: 15px;
+}
+
+.legal-content ul {
+    color: #bbbbbb;
+
+    margin-left: 25px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    background: #050505;
+
+    padding: 60px 7% 20px;
+
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+
+    gap: 40px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+    margin-bottom: 15px;
+}
+
+.footer-column p,
+.footer-column a {
+    color: #999999;
+
+    margin-bottom: 8px;
+
+    display: block;
+}
+
+.footer-column a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid #292929;
+
+    margin-top: 45px;
+
+    padding-top: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #777777;
+}
+
+
+/* =========================================
+   POPUP
+========================================= */
+
+.popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 520px;
+
+    background:
+        linear-gradient(
+            rgba(17, 17, 17, 0.94),
+            rgba(11, 11, 11, 0.97)
+        ),
+        url("../images/shop.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    border: 1px solid rgba(201, 162, 39, 0.5);
+
+    border-radius: 14px;
+
+    padding: 45px 40px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.65),
+        0 0 30px rgba(201, 162, 39, 0.08);
+
+    transform: translateY(25px) scale(0.97);
+
+    transition: transform 0.3s ease;
+}
+
+.popup-overlay.show .popup-box {
+    transform: translateY(0) scale(1);
+}
+
+.popup-close {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.4);
+
+    color: var(--white);
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.popup-close:hover {
+    background: var(--gold);
+
+    color: var(--black);
+
+    border-color: var(--gold);
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-label {
+    display: inline-block;
+
+    color: var(--gold-light);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+.popup-content h2 {
+    color: var(--white);
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+.popup-subtitle {
+    color: var(--grey);
+
+    font-size: 16px;
+
+    margin-bottom: 25px;
+}
+
+.popup-offer {
+    border: 1px solid rgba(201, 162, 39, 0.5);
+
+    background: rgba(201, 162, 39, 0.08);
+
+    padding: 22px;
+
+    margin: 20px 0;
+
+    border-radius: 10px;
+}
+
+.popup-offer span {
+    display: block;
+
+    color: var(--gold-light);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+.popup-offer strong {
+    display: block;
+
+    color: var(--gold);
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    margin-bottom: 8px;
+}
+
+.popup-offer p {
+    color: var(--white);
+
+    font-size: 14px;
+}
+
+.popup-small {
+    color: #bdbdbd;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    max-width: 400px;
+
+    margin: 0 auto 25px;
+}
+
+.popup-buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    align-items: center;
+}
+
+.popup-buttons .btn {
+    width: 100%;
+
+    max-width: 320px;
+}
+
+.popup-secondary {
+    background: transparent;
+
+    border: none;
+
+    color: #bdbdbd;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    padding: 8px 15px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .services-grid,
+    .barber-grid,
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .nav-container {
+        min-height: 70px;
+
+        padding: 0 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+
+        margin-left: auto;
+    }
+
+    .nav-links {
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        background: #111111;
+
+        padding: 10px 20px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 15px 10px;
+
+        border-bottom: 1px solid #222222;
+    }
+
+    .book-btn {
+        text-align: center;
+
+        margin-top: 10px;
+    }
+
+    .hero {
+        min-height: 75vh;
+
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        padding: 70px 20px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+
+        max-width: 320px;
+
+        text-align: center;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-wrapper {
+        padding: 25px 20px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .services-grid,
+    .barber-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .about-image img {
+        height: 350px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .popup-box {
+        padding: 40px 25px 30px;
+    }
+
+    .popup-content h2 {
+        font-size: 30px;
+    }
+
+    .popup-offer strong {
+        font-size: 36px;
+    }
+
+    .popup-subtitle {
+        font-size: 14px;
+    }
+}
